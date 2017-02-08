@@ -1,37 +1,27 @@
-## Welcome to GitHub Pages
+<ul class="shots"></ul>
 
-You can use the [editor on GitHub](https://github.com/SFCMiguel/portfolio/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/jribbble/dist/jribbble.min.js"></script>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+  <script>
+    $.jribbble.setToken('1234567890');
 
-### Markdown
+    /*
+      Jribbble methods make ajax requests to the Dribbble API. When
+      the requests complete, a Promise is returned. Use `then` to take an action
+      on the response from the server.
+    */
+    $.jribbble.shots('teams').then(function(shots) {
+      var html = [];
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+      shots.forEach(function(shot) {
+        // See the Dribbble docs for all available shot properties.
+        html.push('<li class="shots--shot">');
+        html.push('<a href="' + shot.html_url + '">');
+        html.push('<img src="' + shot.images.normal + '">');
+        html.push('</a></li>');
+      });
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/SFCMiguel/portfolio/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+      $('.shots').html(html.join(''));
+    });
+  </script>
