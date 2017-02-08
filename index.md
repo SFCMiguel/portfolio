@@ -4,7 +4,7 @@
   <script src="bower_components/jribbble/dist/jribbble.min.js"></script>
 
   <script>
-    $.jribbble.setToken('1234567890');
+    $.jribbble.setToken('0758a5f1b55bfa11e89f185a313ec31df66f882b5943787232b3f3f1883304ac');
 
     /*
       Jribbble methods make ajax requests to the Dribbble API. When
